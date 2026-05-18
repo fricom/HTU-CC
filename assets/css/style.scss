@@ -1,0 +1,9 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// 헤더의 "View on GitHub" 버튼 숨김
+.page-header .btn {
+  display: none;
+}
