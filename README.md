@@ -399,6 +399,8 @@ tmux attach -t mywork   # 다시 들어가기
 tmux ls                 # 세션 목록 보기
 tmux kill-session -t mywork  # 세션 종료
 tmux set -g mouse on #마우스 스크롤 제어
+Ctrl + b를 누른 후 % #화면 쪼개쓰기
+Ctrl + b 누른 후 손 떼고 ➡️ Spacebar #화면 균등분할하기
 ```
 
 > 💡 **앞으로 어떻게 활용?** CC에게 긴 작업을 시킬 때(예: "전체 코드베이스 리뷰해줘") 반드시 tmux 안에서 실행. 그래야 잠깐 카페 가거나 노트북을 닫아도 작업이 안 끊긴다.
