@@ -67,7 +67,7 @@
 
 > ⚠️ 비밀번호 입력 시 화면에 아무것도 안 보이는 게 정상이다. 그냥 치고 Enter.
 
-> 💡 **WSL이 뭔지?** "Windows Subsystem for Linux" — 윈도우 안에서 리눅스를 돌리는 가상 환경. 부트캠프에서 쓸 tmux 같은 도구가 리눅스 기반이라 통일성을 위해 사용한다.
+> 💡 **WSL이 뭔지?** "Windows Subsystem for Linux" — 윈도우 안에서 리눅스를 돌리는 가상 환경. 부트캠프에서 쓸  같은 도구가 리눅스 기반이라 통일성을 위해 사용한다.
 
 ---
 
@@ -174,13 +174,13 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-#### ✅ Git / Python / tmux 설치
+#### ✅ Git / Python /  설치
 
 | 도구 | Mac | WSL |
 |---|---|---|
 | Git | `brew install git` | `sudo apt install git` |
 | Python | `brew install python` | `sudo apt install python3 python3-pip` |
-| tmux | `brew install tmux` | `sudo apt install tmux` |
+|  | `brew install ` | `sudo apt install tmux` |
 
 #### ✅ Git 초기 설정 (Mac/WSL 동일)
 
@@ -398,6 +398,7 @@ cc                      # 그 안에서 CC 실행
 tmux attach -t mywork   # 다시 들어가기
 tmux ls                 # 세션 목록 보기
 tmux kill-session -t mywork  # 세션 종료
+tmux set -g mouse on 마우스 스크롤 제어
 ```
 
 > 💡 **앞으로 어떻게 활용?** CC에게 긴 작업을 시킬 때(예: "전체 코드베이스 리뷰해줘") 반드시 tmux 안에서 실행. 그래야 잠깐 카페 가거나 노트북을 닫아도 작업이 안 끊긴다.
