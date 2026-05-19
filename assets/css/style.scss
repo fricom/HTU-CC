@@ -7,3 +7,127 @@
 .page-header .btn {
   display: none;
 }
+
+// ─────────────────────────────────────────
+// 사이드바 목차 (좌측 고정)
+// ─────────────────────────────────────────
+$sidebar-width: 280px;
+$sidebar-bp: 1024px;
+
+.toc-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  background: #f7f8fa;
+  border-right: 1px solid #e1e4e8;
+  padding: 28px 22px;
+  overflow-y: auto;
+  z-index: 20;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-overflow-scrolling: touch;
+
+  .toc-title {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6a737d;
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  li {
+    margin: 1px 0;
+
+    &.level-3 {
+      padding-left: 14px;
+      font-size: 13px;
+
+      a { color: #586069; }
+    }
+  }
+
+  a {
+    color: #24292e;
+    text-decoration: none;
+    display: block;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: background 0.12s ease, color 0.12s ease;
+    word-break: keep-all;
+
+    &:hover {
+      background: #e9ecef;
+      color: #155799;
+    }
+
+    &.active {
+      background: #155799;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+// 본문을 사이드바 너비만큼 밀어줌
+.page-header,
+.main-content {
+  margin-left: $sidebar-width;
+}
+
+// 모바일 (사이드바 → 상단 접이식)
+@media (max-width: $sidebar-bp) {
+  .toc-sidebar {
+    position: relative;
+    width: auto;
+    height: auto;
+    max-height: 50vh;
+    border-right: none;
+    border-bottom: 1px solid #e1e4e8;
+    padding: 16px 20px;
+
+    .toc-title {
+      cursor: pointer;
+      margin: 0;
+      padding: 4px 0;
+      border-bottom: none;
+
+      &::after {
+        content: "▾";
+        float: right;
+        transition: transform 0.18s ease;
+      }
+    }
+
+    &.collapsed {
+      max-height: none;
+
+      nav { display: none; }
+      .toc-title::after { transform: rotate(-90deg); }
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+  }
+
+  .page-header,
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+// 사이드바 ON일 때 본문 max-width 약간 조정
+.main-content {
+  max-width: 64rem;
+}
