@@ -1,0 +1,9 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+# 로컬 미리보기 전용 (레포에 올리지 않음)
+Gemfile
+Gemfile.lock
+.DS_Store
