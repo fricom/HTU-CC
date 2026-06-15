@@ -583,6 +583,51 @@ claude mcp add 서버이름 명령어
 
 > ⚠️ `settings.json`을 직접 편집할 경우 JSON 형식이라 쉼표 하나 빠져도 에러 남. 불안하면 CC에게 "이 MCP 서버 settings.json에 추가해줘"라고 요청.
 
+**설정 파일로 직접 추가 — 두 가지 위치:**
+
+> ※ `claude mcp add`(CLI) 대신 설정 파일에 직접 써넣을 수도 있다. 핵심은 **"이 서버를 어디까지 쓸 것이냐"** 에 따라 넣는 파일이 갈린다는 점. 같은 `mcpServers` 블록을 어느 파일에 두느냐의 차이다.
+
+**① 프로젝트에 추가 (권장)** — 그 프로젝트에서만 사용
+
+사용하려는 프로젝트 루트에 `.mcp.json` 파일을 생성한다.
+
+```json
+{
+  "mcpServers": {
+    "papyrus": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/brandonnoh/papyrus.git", "papyrus"]
+    }
+  }
+}
+```
+
+> 💡 CC가 그 프로젝트를 열면 `.mcp.json`을 **자동으로 감지**한다. 팀/레포 단위로 같은 도구를 공유할 때 좋고, 파일이 레포에 들어가니 협업자도 동일 MCP를 그대로 쓰게 된다.
+
+**② 전역 설치 (모든 프로젝트)** — 어느 프로젝트에서나 사용
+
+`~/.claude/settings.json` 의 `mcpServers` 블록에 동일한 내용을 추가한다.
+
+```json
+{
+  "mcpServers": {
+    "papyrus": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/brandonnoh/papyrus.git", "papyrus"]
+    }
+  }
+}
+```
+
+> ⚙️ 설정 후 **Claude Code를 재시작**하면 적용된다.
+
+| 구분 | 넣는 파일 | 적용 범위 | 언제 쓰나 |
+|---|---|---|---|
+| 프로젝트 (권장) | 프로젝트 루트 `.mcp.json` | 그 프로젝트만 | 레포/팀 단위로 도구 공유 |
+| 전역 | `~/.claude/settings.json` | 모든 프로젝트 | 어디서나 늘 쓰는 도구 |
+
+> 🔍 `command`·`args`는 그 MCP 서버를 **실행하는 명령**이다. 위 예시는 papyrus를 `uvx`(Python 패키지 실행기)로 git 저장소에서 바로 띄우는 형태 — 서버마다 `npx`, `uvx`, 직접 실행 등 방식이 다르니 각 도구 안내를 따른다.
+
 ### 3-5. 실시간 검색 확장 — Brave Search + Smithery + 소켓
 
 > ※ 3-4의 MCP를 가장 흔하게 만나는 실전 조합. 터미널의 CC에게 **'실시간 인터넷 검색 능력'** 을 부여하기 위해 결합되는 일종의 "세트 상품"이다.
